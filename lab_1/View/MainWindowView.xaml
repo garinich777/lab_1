@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab_1"
+        xmlns:localVM="clr-namespace:lab_1.ViewModel"
         mc:Ignorable="d"
         WindowStyle="None"
         Background="#2D2D30"
@@ -29,7 +30,7 @@
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" Value="#313134"/>
-                             </Trigger>
+                            </Trigger>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter Property="Background" Value="#007ACC"/>
                             </Trigger>
@@ -61,12 +62,49 @@
         <Style TargetType="Label" x:Key="base_label">
             <Setter Property="Foreground" Value="White"/>
         </Style>
-
-
-
- 
     </Window.Resources>
 
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="Width" TargetName="аbout_program_border">
+                        <DoubleAnimation From="0" To="650"                                         
+                                         AutoReverse="False"                                         
+                                         Duration="0:0:0.5"
+                                         DecelerationRatio="1"
+                                         BeginTime="0:0:0.5"
+                                         />
+                    </Storyboard>
+                </BeginStoryboard>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="Height" TargetName="аbout_program_border">
+                        <DoubleAnimation From="{Binding аbout_program_border.Height}"  To="350"
+                                         AutoReverse="False"                                         
+                                         Duration="0:0:0.5"
+                                         DecelerationRatio="1"
+                                         BeginTime="0:0:1"
+                                         />
+                    </Storyboard>
+                </BeginStoryboard>
+                <BeginStoryboard>
+                    <Storyboard   TargetProperty="(Button.BorderBrush).(SolidColorBrush.Color)" TargetName="аbout_program_border">
+                        <ColorAnimation From="{Binding аbout_program_border.BorderBrush}"  To="#CCC618"
+                                         AutoReverse="True"                                         
+                                         Duration="0:0:1"
+                                         RepeatBehavior="10"
+                    
+                                         BeginTime="0:0:1.6"
+                                         />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Window.DataContext>
+        <localVM:AboutMessageVM/>
+    </Window.DataContext>
 
     <Grid x:Name="MainGrid" Background="#2D2D30">
         <Grid.RowDefinitions>
@@ -74,7 +112,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="#242427" MouseDown="MoveWindow">            
+        <Grid Grid.Row="0" Background="#242427" MouseDown="MoveWindow">
             <Button Style="{StaticResource exit_button}" Margin="765,3,8,3" Click="ExitClick"/>
             <Button Style="{StaticResource сollapse_button}" Margin="735,3,40,3" Click="CollapseClick"/>
 
@@ -92,8 +130,28 @@
         </Grid>
 
         <Grid Grid.Row="1">
+            <Grid x:Name="аbout_program">
+                <Border x:Name="аbout_program_border" BorderBrush="#007ACC" BorderThickness="2"
+                CornerRadius="15" Background="#1E1E1E"
+                Padding="20" Height="80" Width="0">
+                    <TextBlock  Text="{Binding Message}" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <Grid>
+                
+                
+                
+                
+                
+            </Grid>
+            
+            
+            
+            
+            
             
         </Grid>
-        
+
     </Grid>
 </Window>
