@@ -200,16 +200,8 @@
             <Grid Visibility="Visible">
                 <ListBox Margin="520,10,10,10" />
                 <Button Content="Добавить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                <local:NumBox Language="" Margin="10,10,0,0" HorizontalAlignment="Left" Width="200" Height="40" VerticalAlignment="Top"/>
-
-
+                <local:NumBox MaxValue="10000" MinValue="-10000" Margin="10,10,0,0" HorizontalAlignment="Left" Width="200" Height="40" VerticalAlignment="Top"/>
             </Grid>
-
-
-
-
-
-
         </Grid>
 
     </Grid>

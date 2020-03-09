@@ -7,8 +7,6 @@
              mc:Ignorable="d">
 
     <Grid>
-        <TextBox x:Name="tbNumBox" TextChanged="tbNumBox_TextChanged">
-            
-        </TextBox>
+        <TextBox x:Name="tbNumBox" TextChanged="tbNumBox_TextChanged"/>
     </Grid>
 </UserControl>
