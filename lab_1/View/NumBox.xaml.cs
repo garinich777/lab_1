@@ -22,6 +22,25 @@ namespace lab_1.View
         private int _max_value;
         private int _min_value;
 
+        private static Regex _num_regex = new Regex("[^0-9-]");
+        private static Regex _minus_regex = new Regex("[^0-9]");
+        private static Regex _minus_zero = new Regex("-0");
+        private static Regex _start_zero = new Regex("^0.+");
+
+        public event RoutedEventHandler ErrorSymbol
+        {
+            add { AddHandler(ErrorSymbolEvent, value); }
+            remove { RemoveHandler(ErrorSymbolEvent, value); }
+        }
+        public static readonly RoutedEvent ErrorSymbolEvent = 
+            EventManager.RegisterRoutedEvent("ErrorSymbol", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(NumBox));
+
+        void RaiseErrorSymbolEvent()
+        {
+            RoutedEventArgs newEventArgs = new RoutedEventArgs(ErrorSymbolEvent);
+            RaiseEvent(newEventArgs);
+        }
+
         public int Value
         {
             get { return (int)GetValue(ValueProperty); }
@@ -58,17 +77,13 @@ namespace lab_1.View
         {
             tbNumBox.Text = tbNumBox.Text.Remove(tbNumBox.Text.Length - 1);
             tbNumBox.SelectionStart = tbNumBox.Text.Length;
+            RaiseErrorSymbolEvent();
         }
 
         private void tbNumBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbNumBox.Text != "")
             {
-                Regex _num_regex = new Regex("[^0-9-]");
-                Regex _minus_regex = new Regex("[^0-9]");
-                Regex _minus_zero = new Regex("-0");
-                Regex _start_zero = new Regex("^0.+");
-
                 if (_num_regex.IsMatch(tbNumBox.Text)) RemoveSymbol();                
                 
                 else if (_minus_regex.IsMatch(tbNumBox.Text.Remove(0, 1))) RemoveSymbol();
@@ -79,6 +94,8 @@ namespace lab_1.View
 
                 int.TryParse(tbNumBox.Text, out _value);
                 if (_value < _min_value || _value > _max_value) RemoveSymbol();
+
+                Value = _value;
             }
         }
     }

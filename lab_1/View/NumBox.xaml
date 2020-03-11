@@ -5,7 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:lab_1.View"
              mc:Ignorable="d">
-
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="{Binding Control.Foreground, Converter={x:Static Colors.Red}}"/>
+            <Setter Property="Background" Value="{Binding Control.Background, Converter={x:Static Colors.Red}}"/>
+            <Setter Property="BorderBrush" Value="{Binding Control.BorderBrush, Converter={x:Static Colors.Red}}"/>
+            <Setter Property="BorderThickness" Value="{Binding Control.BorderThickness,TargetNullValue=1}"/>
+            <Setter Property="FontSize" Value="{Binding Control.FontSize,TargetNullValue=14}"/>
+            <Setter Property="Height" Value="{Binding Control.Height, TargetNullValue=20 }"/>
+            <Setter Property="Width" Value="{Binding Control.Width, TargetNullValue=100 }"/> 
+        </Style>
+    </UserControl.Resources>   
+    
     <Grid>
         <TextBox x:Name="tbNumBox" TextChanged="tbNumBox_TextChanged"/>
     </Grid>
