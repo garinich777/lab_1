@@ -57,9 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\NumBox.xaml.cs">
-      <DependentUpon>NumBox.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="View\NumBox.cs" />
     <Page Include="View\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,10 +73,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\MenuResurseView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\NumBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -127,8 +127,22 @@
             <Setter Property="BorderBrush" Value="#1A1A1A"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Height" Value="35"/>
+            <Setter Property="Height" Value="38"/>
             <Setter Property="Width" Value="200"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="local:NumBox">
+                        <Border Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Control.IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         
     </Window.Resources>
@@ -171,13 +185,13 @@
         </EventTrigger>
         
         
-        <EventTrigger RoutedEvent="local:NumBox.ErrorSymbol">
+        <EventTrigger RoutedEvent="local:NumBox.ErrorSymbol">            
             <EventTrigger.Actions>
-            <BeginStoryboard>
-                    <Storyboard   TargetProperty="(local:NumBox.BorderBrush).(SolidColorBrush.Color)" TargetName="nb_add_value">
-                        <ColorAnimation From="Blue"  To="Red"
-                        AutoReverse="True"                                         
-                        Duration="0:0:10"
+                <BeginStoryboard>
+                    <Storyboard   TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" TargetName="nb_add_value">
+                        <ColorAnimation From="#007ACC"  To="Red"
+                            AutoReverse="True"                                         
+                            Duration="0:0:0.4"
                         />
                     </Storyboard>
             </BeginStoryboard>
@@ -228,6 +242,5 @@
                 <local:NumBox x:Name="nb_add_value" MaxValue="10000" MinValue="-10000" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </Grid>
         </Grid>
-
     </Grid>
 </Window>

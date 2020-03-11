@@ -6,17 +6,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 
 namespace lab_1.View
 {
-    public partial class NumBox : UserControl
+    public partial class NumBox : TextBox
     {
         private int _value;
         private int _max_value;
@@ -32,7 +26,7 @@ namespace lab_1.View
             add { AddHandler(ErrorSymbolEvent, value); }
             remove { RemoveHandler(ErrorSymbolEvent, value); }
         }
-        public static readonly RoutedEvent ErrorSymbolEvent = 
+        public static readonly RoutedEvent ErrorSymbolEvent =
             EventManager.RegisterRoutedEvent("ErrorSymbol", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(NumBox));
 
         void RaiseErrorSymbolEvent()
@@ -67,7 +61,7 @@ namespace lab_1.View
 
         public NumBox()
         {
-            InitializeComponent();
+            TextChanged += tbNumBox_TextChanged;
             _min_value = MinValue;
             _max_value = MaxValue;
             _value = Value;
@@ -75,24 +69,24 @@ namespace lab_1.View
 
         private void RemoveSymbol()
         {
-            tbNumBox.Text = tbNumBox.Text.Remove(tbNumBox.Text.Length - 1);
-            tbNumBox.SelectionStart = tbNumBox.Text.Length;
+            Text = Text.Remove(Text.Length - 1);
+            SelectionStart = Text.Length;
             RaiseErrorSymbolEvent();
         }
 
         private void tbNumBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (tbNumBox.Text != "")
+            if (Text != "")
             {
-                if (_num_regex.IsMatch(tbNumBox.Text)) RemoveSymbol();                
-                
-                else if (_minus_regex.IsMatch(tbNumBox.Text.Remove(0, 1))) RemoveSymbol();
+                if (_num_regex.IsMatch(Text)) RemoveSymbol();
 
-                else if (_minus_zero.IsMatch(tbNumBox.Text)) RemoveSymbol();
+                else if (_minus_regex.IsMatch(Text.Remove(0, 1))) RemoveSymbol();
 
-                else if (_start_zero.IsMatch(tbNumBox.Text)) RemoveSymbol();
+                else if (_minus_zero.IsMatch(Text)) RemoveSymbol();
 
-                int.TryParse(tbNumBox.Text, out _value);
+                else if (_start_zero.IsMatch(Text)) RemoveSymbol();
+
+                int.TryParse(Text, out _value);
                 if (_value < _min_value || _value > _max_value) RemoveSymbol();
 
                 Value = _value;
