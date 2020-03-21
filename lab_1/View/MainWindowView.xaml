@@ -200,9 +200,9 @@
         
     </Window.Triggers>
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <localVM:AboutMessageVM/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <Grid x:Name="MainGrid" Background="#2D2D30">
         <Grid.RowDefinitions>
@@ -232,13 +232,13 @@
                 <Border x:Name="аbout_program_border" BorderBrush="#007ACC" BorderThickness="2"
                 CornerRadius="15" Background="#1E1E1E"
                 Padding="20" Height="80" Width="0">
-                    <TextBlock  Text="{Binding Message}" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                    <TextBlock  Text="{Binding AboutMessageVM.Message}" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
                 </Border>
             </Grid>
 
             <Grid Visibility="Visible">
-                <ListBox Margin="520,10,10,10" />
-                <Button Content="Добавить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <ListBox x:Name="lb_array" Margin="520,10,10,10" ItemsSource="{Binding BaseArrayWorkerVM.MVValues}"/>
+                <Button Command="{Binding BaseArrayWorkerVM.AddCommand}"  CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <local:NumBox x:Name="nb_add_value" MaxValue="10000" MinValue="-10000" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </Grid>
         </Grid>

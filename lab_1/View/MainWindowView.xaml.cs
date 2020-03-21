@@ -1,4 +1,5 @@
-﻿using System;
+﻿using lab_1.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace lab_1.View
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainVM();
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)

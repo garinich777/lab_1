@@ -57,6 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\BaseArrayWorkerModel.cs" />
+    <Compile Include="ViewModel\BaseArrayWorkerVM.cs" />
+    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="View\NumBox.cs" />
     <Page Include="View\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>

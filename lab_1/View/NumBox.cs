@@ -35,13 +35,13 @@ namespace lab_1.View
             RaiseEvent(newEventArgs);
         }
 
-        public int Value
+        public int? Value
         {
-            get { return (int)GetValue(ValueProperty); }
+            get { return (int?)GetValue(ValueProperty); }
             protected set { SetValue(ValueProperty, value); }
         }
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(int), typeof(NumBox), new PropertyMetadata(0));
+            DependencyProperty.Register("Value", typeof(int?), typeof(NumBox), new PropertyMetadata(null));
 
         public int MaxValue
         {
@@ -63,8 +63,8 @@ namespace lab_1.View
         {
             TextChanged += tbNumBox_TextChanged;
             _min_value = MinValue;
-            _max_value = MaxValue;
-            _value = Value;
+            _max_value = MaxValue;         
+            _value = 0;
         }
 
         private void RemoveSymbol()
@@ -91,6 +91,8 @@ namespace lab_1.View
 
                 Value = _value;
             }
+            else
+                Value = null;
         }
     }
 }
