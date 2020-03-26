@@ -30,6 +30,13 @@
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontSize" Value="24"/>
         </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource round_buttons}" x:Key="exit_button">
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Image Source="/Resources\exit_button.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Window.Triggers>
@@ -118,12 +125,12 @@
             </Grid>
 
             <Grid Visibility="Visible">
-                <ListBox x:Name="lb_array" Margin="10,108,0,65" ItemsSource="{Binding BaseArrayWorkerVM.MVValues}" HorizontalAlignment="Left" Width="200"/>
-                <Button Command="{Binding BaseArrayWorkerVM.AddCommand}"  CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,310"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <ListBox x:Name="lb_array" Margin="10,108,0,65" HorizontalAlignment="Left" Width="200"/>
+                <Button x:Name="b_Add" CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,310"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <local:NumBox x:Name="nb_add_value" MaxValue="10000" MinValue="-10000" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Button Command="{Binding BaseArrayWorkerVM.RemoveCommand}" CommandParameter="{Binding ElementName=lb_array, Path=SelectedIndex}" Content="Удалить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                <ListBox x:Name="lb_array_even" Margin="215,10,0,10" ItemsSource="{Binding BaseArrayWorkerVM.MVEvenValues}" HorizontalAlignment="Left" Width="117"/>
-                <ListBox x:Name="lb_array_odd" Margin="337,10,0,10" ItemsSource="{Binding BaseArrayWorkerVM.MVOddValues}" HorizontalAlignment="Left" Width="117"/>
+                <Button x:Name="b_Remove" CommandParameter="{Binding ElementName=lb_array, Path=SelectedIndex}" Content="Удалить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <ListBox x:Name="lb_array_even" Margin="215,10,0,10" HorizontalAlignment="Left" Width="117"/>
+                <ListBox x:Name="lb_array_odd" Margin="337,10,0,10" HorizontalAlignment="Left" Width="117"/>
             </Grid>
         </Grid>
     </Grid>

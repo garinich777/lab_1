@@ -14,6 +14,32 @@
         BorderThickness="1"
         >
 
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource round_buttons}" x:Key="exit_button">
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Image Source="/Resources\exit_button.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="local:NumBox.ErrorSymbol">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard   TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" TargetName="nb_array_size">
+                        <ColorAnimation From="#007ACC"  To="Red"
+                            AutoReverse="True"                                         
+                            Duration="0:0:0.4"
+                        />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+        
+    </Window.Triggers>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -28,7 +54,7 @@
         <Grid Grid.Row="1">
             <StackPanel>
                 <Label Content="Размер массива" FontSize="12" VerticalAlignment="Center"/>
-                <local:NumBox x:Name="nb_array_size" Margin="10,2" Width="Auto"/>
+                <local:NumBox MinValue="0" MaxValue="100" x:Name="nb_array_size" Margin="10,2" Width="Auto"/>
                 <Label Content="Макс. элемент" FontSize="12" VerticalAlignment="Center"/>
                 <local:NumBox Margin="10,2" Width="Auto"/>
                 <Label Content="Мин. элемент" FontSize="12" VerticalAlignment="Center"/>

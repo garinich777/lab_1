@@ -22,6 +22,7 @@ namespace lab_1.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private BaseArrayWorkerVM _baseArrayWorkerVM = new BaseArrayWorkerVM();
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +32,11 @@ namespace lab_1.View
             {
                 if (e.Action == NotifyCollectionChangedAction.Add) nb_add_value.Clear();
             };
+            b_Add.Command = _baseArrayWorkerVM.AddCommand;
+            b_Remove.Command = _baseArrayWorkerVM.RemoveCommand;
+            lb_array.ItemsSource = _baseArrayWorkerVM.MVValues;
+            lb_array_even.ItemsSource = _baseArrayWorkerVM.MVEvenValues;
+            lb_array_odd.ItemsSource = _baseArrayWorkerVM.MVOddValues;
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)
@@ -51,7 +57,7 @@ namespace lab_1.View
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            //new RandomCreateWindow().Show();
+            new RandomCreateWindow(_baseArrayWorkerVM).Show();
         }
     }
 }

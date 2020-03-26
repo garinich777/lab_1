@@ -76,6 +76,8 @@ namespace lab_1.View
 
         private void tbNumBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            _min_value = MinValue;
+            _max_value = MaxValue;
             if (Text != "")
             {
                 if (_num_regex.IsMatch(Text)) RemoveSymbol();
@@ -88,6 +90,8 @@ namespace lab_1.View
 
                 int.TryParse(Text, out _value);
                 if (_value < _min_value || _value > _max_value) RemoveSymbol();
+
+                if (Text == "-" && _min_value >= 0) RemoveSymbol();
 
                 Value = _value;
             }
