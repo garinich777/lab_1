@@ -9,7 +9,7 @@
         WindowStyle="None"
         Background="#2D2D30"
         ResizeMode="NoResize"
-        Height="450" Width="800"
+        Height="450" Width="465"
         WindowStartupLocation="CenterScreen"
         BorderBrush="#1E1E1E"
         BorderThickness="1">
@@ -68,6 +68,7 @@
 
         <Style TargetType="ListBox">
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="26"/>
             <Setter Property="Background" Value="#1E1E1E"/>
             <Setter Property="BorderBrush" Value="#363636"/>
             <Setter Property="BorderThickness" Value="2"/>
@@ -133,7 +134,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="local:NumBox">
                         <Border Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                                <ScrollViewer x:Name="PART_ContentHost"/>
+                            <ScrollViewer x:Name="PART_ContentHost"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="Control.IsFocused" Value="True">
@@ -144,11 +145,11 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
     </Window.Resources>
 
     <Window.Triggers>
-        
+
         <EventTrigger RoutedEvent="Loaded">
             <EventTrigger.Actions>
                 <BeginStoryboard>
@@ -183,9 +184,9 @@
                 </BeginStoryboard>
             </EventTrigger.Actions>
         </EventTrigger>
-        
-        
-        <EventTrigger RoutedEvent="local:NumBox.ErrorSymbol">            
+
+
+        <EventTrigger RoutedEvent="local:NumBox.ErrorSymbol">
             <EventTrigger.Actions>
                 <BeginStoryboard>
                     <Storyboard   TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" TargetName="nb_add_value">
@@ -194,15 +195,11 @@
                             Duration="0:0:0.4"
                         />
                     </Storyboard>
-            </BeginStoryboard>
+                </BeginStoryboard>
             </EventTrigger.Actions>
         </EventTrigger>
-        
-    </Window.Triggers>
 
-    <!--<Window.DataContext>
-        <localVM:AboutMessageVM/>
-    </Window.DataContext>-->
+    </Window.Triggers>
 
     <Grid x:Name="MainGrid" Background="#2D2D30">
         <Grid.RowDefinitions>
@@ -211,14 +208,13 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="#242427" MouseDown="MoveWindow">
-            <Button Style="{StaticResource exit_button}" Margin="765,3,8,3" Click="ExitClick"/>
-            <Button Style="{StaticResource сollapse_button}" Margin="735,3,40,3" Click="CollapseClick"/>
+            <Button Style="{StaticResource exit_button}" Margin="0,5, 5,5" Click="ExitClick" Width="25" HorizontalAlignment="Right"/>
+            <Button Style="{StaticResource сollapse_button}" Margin="0,5, 30,5" Click="CollapseClick" Width="25" HorizontalAlignment="Right"/>
 
             <Menu Background="#242427" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
                 <MenuItem Header="_Файл" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate2}"  >
                     <MenuItem Header="_Создать" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate3}">
-                        <MenuItem Header="_Массив в ручную"  InputGestureText="Сtrl+M"/>
-                        <MenuItem Header="_Рандомный массив" InputGestureText="Сtrl+R"/>
+                        <MenuItem Header="_Рандомный массив" Command="{Binding BaseArrayWorkerVM.RandomGenerateCommand}" CommandParameter="10" InputGestureText="Сtrl+R"/>
                     </MenuItem>
                     <MenuItem Header="_Открыть" InputGestureText="Сtrl+O"/>
                     <MenuItem Header="_Сохранить" InputGestureText="Сtrl+S"/>
@@ -237,9 +233,12 @@
             </Grid>
 
             <Grid Visibility="Visible">
-                <ListBox x:Name="lb_array" Margin="520,10,10,10" ItemsSource="{Binding BaseArrayWorkerVM.MVValues}"/>
-                <Button Command="{Binding BaseArrayWorkerVM.AddCommand}"  CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <ListBox x:Name="lb_array" Margin="10,108,0,65" ItemsSource="{Binding BaseArrayWorkerVM.MVValues}" HorizontalAlignment="Left" Width="200"/>
+                <Button Command="{Binding BaseArrayWorkerVM.AddCommand}"  CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,310"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <local:NumBox x:Name="nb_add_value" MaxValue="10000" MinValue="-10000" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Button Command="{Binding BaseArrayWorkerVM.RemoveCommand}" CommandParameter="{Binding ElementName=lb_array, Path=SelectedIndex}" Content="Удалить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <ListBox x:Name="lb_array_even" Margin="215,10,0,10" ItemsSource="{Binding BaseArrayWorkerVM.MVEvenValues}" HorizontalAlignment="Left" Width="117"/>
+                <ListBox x:Name="lb_array_odd" Margin="337,10,0,10" ItemsSource="{Binding BaseArrayWorkerVM.MVOddValues}" HorizontalAlignment="Left" Width="117"/>
             </Grid>
         </Grid>
     </Grid>

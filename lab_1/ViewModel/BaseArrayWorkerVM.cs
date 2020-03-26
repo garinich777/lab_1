@@ -23,17 +23,24 @@ namespace lab_1.ViewModel
         {
             _model.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
 
-            AddCommand = new DelegateCommand(ival => {
-                _model.AddValue((int?)ival);
+            AddCommand = new DelegateCommand(i => {
+                _model.AddValue((int?)i);
             });
 
             RemoveCommand = new DelegateCommand(i => {
                 if (((int?)i).HasValue) _model.RemoveValue(((int?)i).Value);
             });
+
+            RandomGenerateCommand = new DelegateCommand(count => {
+                _model.RandomGenerate(int.Parse((string)count));
+            });
         }
         public ICommand AddCommand { get; }
         public ICommand RemoveCommand { get; }
-        public int Sum => _model.Sum;
+        public ICommand RandomGenerateCommand { get; }
         public ReadOnlyObservableCollection<int> MVValues => _model.Values;
+        public ReadOnlyObservableCollection<int> MVEvenValues => _model.Even_Values;
+        public ReadOnlyObservableCollection<int> MVOddValues => _model.Odd_Values;
     }
 }
+        
