@@ -10,19 +10,11 @@ using System.Windows.Input;
 
 namespace lab_1.ViewModel
 {
-    class BaseArrayWorkerVM : INotifyPropertyChanged
+    public class BaseArrayWorkerVM
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         readonly BaseArrayWorkerModel _model = new BaseArrayWorkerModel();
         public BaseArrayWorkerVM()
         {
-            _model.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
-
             AddCommand = new DelegateCommand(i => {
                 _model.AddValue((int?)i);
             });
@@ -32,7 +24,7 @@ namespace lab_1.ViewModel
             });
 
             RandomGenerateCommand = new DelegateCommand(count => {
-                _model.RandomGenerate(int.Parse((string)count));
+                _model.RandomGenerate((int)count);
             });
         }
         public ICommand AddCommand { get; }

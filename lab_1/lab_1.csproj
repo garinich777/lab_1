@@ -141,8 +141,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\collapse_2.png" />
-    <Resource Include="Resources\exit_2.png" />
+    <Resource Include="Resources\exit_button.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Error.png" />
+    <Resource Include="Resources\Information.png" />
+    <Resource Include="Resources\Question.png" />
+    <Resource Include="Resources\Warning.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

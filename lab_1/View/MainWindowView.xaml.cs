@@ -26,13 +26,16 @@ namespace lab_1.View
         {
             InitializeComponent();
             DataContext = new MainVM();
-            ((INotifyCollectionChanged)lb_array.Items).CollectionChanged +=
-             lb_array_CollectionChanged;
+
+            ((INotifyCollectionChanged)lb_array.Items).CollectionChanged += (s, e) =>
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add) nb_add_value.Clear();
+            };
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)
-        {                  
-            Close();
+        {
+            App.Current.Shutdown();
         }
 
         private void CollapseClick(object sender, RoutedEventArgs e)
@@ -46,15 +49,9 @@ namespace lab_1.View
                 DragMove();
         }
 
-        private void lb_array_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-                nb_add_value.Clear();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("dd");
+            //new RandomCreateWindow().Show();
         }
     }
 }

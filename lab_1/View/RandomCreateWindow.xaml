@@ -11,7 +11,8 @@
         Height="320" Width="200"
         WindowStartupLocation="CenterScreen"
         BorderBrush="#1E1E1E"
-        BorderThickness="1">
+        BorderThickness="1"
+        >
 
     <Grid>
         <Grid.RowDefinitions>
@@ -27,13 +28,13 @@
         <Grid Grid.Row="1">
             <StackPanel>
                 <Label Content="Размер массива" FontSize="12" VerticalAlignment="Center"/>
-                <local:NumBox Margin="10,2" Width="Auto"/>
+                <local:NumBox x:Name="nb_array_size" Margin="10,2" Width="Auto"/>
                 <Label Content="Макс. элемент" FontSize="12" VerticalAlignment="Center"/>
                 <local:NumBox Margin="10,2" Width="Auto"/>
                 <Label Content="Мин. элемент" FontSize="12" VerticalAlignment="Center"/>
                 <local:NumBox Margin="10,2" Width="Auto"/>
             </StackPanel>
-            <Button Content="Создать" Command="{Binding BaseArrayWorkerVM.AddCommand}"  CommandParameter="{Binding Value, ElementName=nb_add_value}" VerticalAlignment="Bottom" Margin="10,0,10,10" Width="Auto"/>
+            <Button x:Name="СreateButton" Content="Создать" Command="{Binding BaseArrayWorkerVM.RandomGenerateCommand}" CommandParameter="{Binding Value, ElementName=nb_array_size}" VerticalAlignment="Bottom" Margin="10,0,10,10" Width="Auto" Click="СreateArrayClick"/>
         </Grid>
     </Grid>
 </Window>

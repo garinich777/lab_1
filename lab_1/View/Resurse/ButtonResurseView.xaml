@@ -36,7 +36,7 @@
     <Style TargetType="Button" BasedOn="{StaticResource round_buttons}" x:Key="exit_button">
         <Setter Property="Content">
             <Setter.Value>
-                <Image Source="/Resources\exit_2.png"/>
+                <Image Source="/Resources\exit_button.png"/>
             </Setter.Value>
         </Setter>
     </Style>

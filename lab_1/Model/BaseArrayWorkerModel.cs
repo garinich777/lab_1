@@ -6,14 +6,8 @@ using System.Linq;
 
 namespace lab_1.Model
 {
-    class BaseArrayWorkerModel : INotifyPropertyChanged
+    class BaseArrayWorkerModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private readonly ObservableCollection<int> _values = new ObservableCollection<int>();
         private readonly ObservableCollection<int> _even_values = new ObservableCollection<int>();
         private readonly ObservableCollection<int> _odd_values = new ObservableCollection<int>();
@@ -39,8 +33,6 @@ namespace lab_1.Model
                     _odd_values.Add(value.Value);
                 else
                     _even_values.Add(value.Value);
-
-                OnPropertyChanged("Values");
             }
         }
 
@@ -60,7 +52,6 @@ namespace lab_1.Model
                         _odd_values.Add(el);
                     i++;
                 }
-                OnPropertyChanged("Values");
             }
         }
 

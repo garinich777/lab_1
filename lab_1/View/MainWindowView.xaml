@@ -84,6 +84,8 @@
         </EventTrigger>
     </Window.Triggers>
 
+
+
     <Grid x:Name="MainGrid" Background="#2D2D30">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -97,7 +99,7 @@
             <Menu Background="#242427" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
                 <MenuItem Header="_Файл" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate2}"  >
                     <MenuItem Header="_Создать" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate3}">
-                        <MenuItem Header="_Рандомный массив" Command="{Binding BaseArrayWorkerVM.RandomGenerateCommand}" CommandParameter="10" InputGestureText="Сtrl+R"/>
+                        <MenuItem Header="_Рандомный массив" InputGestureText="Сtrl+R" Click="MenuItem_Click"/>
                     </MenuItem>
                     <MenuItem Header="_Открыть" InputGestureText="Сtrl+O"/>
                     <MenuItem Header="_Сохранить" InputGestureText="Сtrl+S"/>
@@ -117,7 +119,7 @@
 
             <Grid Visibility="Visible">
                 <ListBox x:Name="lb_array" Margin="10,108,0,65" ItemsSource="{Binding BaseArrayWorkerVM.MVValues}" HorizontalAlignment="Left" Width="200"/>
-                <Button Command="{Binding BaseArrayWorkerVM.AddCommand}"  CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,310"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="Button_Click"/>
+                <Button Command="{Binding BaseArrayWorkerVM.AddCommand}"  CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,310"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <local:NumBox x:Name="nb_add_value" MaxValue="10000" MinValue="-10000" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Button Command="{Binding BaseArrayWorkerVM.RemoveCommand}" CommandParameter="{Binding ElementName=lb_array, Path=SelectedIndex}" Content="Удалить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <ListBox x:Name="lb_array_even" Margin="215,10,0,10" ItemsSource="{Binding BaseArrayWorkerVM.MVEvenValues}" HorizontalAlignment="Left" Width="117"/>
