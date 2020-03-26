@@ -51,5 +51,10 @@ namespace lab_1.View
             if (e.Action == NotifyCollectionChangedAction.Add)
                 nb_add_value.Clear();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("dd");
+        }
     }
 }

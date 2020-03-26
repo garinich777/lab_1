@@ -61,7 +61,21 @@
     <Compile Include="ViewModel\BaseArrayWorkerVM.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
+    <Compile Include="View\MessageBoxView.xaml.cs">
+      <DependentUpon>MessageBoxView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NumBox.cs" />
+    <Compile Include="View\RandomCreateWindow.xaml.cs">
+      <DependentUpon>RandomCreateWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\MessageBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Resurse\ButtonResurseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -76,7 +90,19 @@
       <DependentUpon>MainWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\MenuResurseView.xaml">
+    <Page Include="View\Resurse\LabelResurseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Resurse\MenuResurseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Resurse\NumBoxResurseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RandomCreateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

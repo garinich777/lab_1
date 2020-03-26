@@ -6,7 +6,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="View/MenuResurseView.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="View/Resurse/MenuResurseView.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="View/Resurse/ButtonResurseView.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="View/Resurse/NumBoxResurseView.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="View/Resurse/LabelResurseView.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

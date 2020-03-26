@@ -15,57 +15,6 @@
         BorderThickness="1">
 
     <Window.Resources>
-        <Style TargetType="Button" x:Key="round_buttons">
-            <Setter Property="Width" Value="25"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Focusable" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Border Background="{TemplateBinding Background}" CornerRadius="20"/>
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="false">
-                                <Setter Property="Background" Value="#242427"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" Value="#313134"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" Value="#007ACC"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" Value="#2D2D30"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="Button" BasedOn="{StaticResource round_buttons}" x:Key="exit_button">
-            <Setter Property="Content">
-                <Setter.Value>
-                    <Image Source="/Resources\exit_2.png"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="Button" BasedOn="{StaticResource round_buttons}" x:Key="сollapse_button">
-            <Setter Property="Content">
-                <Setter.Value>
-                    <Image Source="/Resources\collapse_2.png"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="Label" x:Key="base_label">
-            <Setter Property="Foreground" Value="White"/>
-        </Style>
-
         <Style TargetType="ListBox">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="26"/>
@@ -81,71 +30,6 @@
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontSize" Value="24"/>
         </Style>
-
-        <Style TargetType="Button">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#414141"/>
-            <Setter Property="BorderBrush" Value="#1A1A1A"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="false">
-                                <Setter Property="Background" Value="#242427"/>
-                            </Trigger>
-                            <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="Background" Value="#007ACC"/>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter Property="Background" Value="#767679"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" Value="#767679"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" Value="#007ACC"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" Value="#2D2D30"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="local:NumBox">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#1E1E1E"/>
-            <Setter Property="BorderBrush" Value="#1A1A1A"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Height" Value="38"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="local:NumBox">
-                        <Border Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ScrollViewer x:Name="PART_ContentHost"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="Control.IsFocused" Value="True">
-                                <Setter Property="BorderBrush" Value="#007ACC"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
     </Window.Resources>
 
     <Window.Triggers>
@@ -198,7 +82,6 @@
                 </BeginStoryboard>
             </EventTrigger.Actions>
         </EventTrigger>
-
     </Window.Triggers>
 
     <Grid x:Name="MainGrid" Background="#2D2D30">
@@ -234,7 +117,7 @@
 
             <Grid Visibility="Visible">
                 <ListBox x:Name="lb_array" Margin="10,108,0,65" ItemsSource="{Binding BaseArrayWorkerVM.MVValues}" HorizontalAlignment="Left" Width="200"/>
-                <Button Command="{Binding BaseArrayWorkerVM.AddCommand}"  CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,310"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <Button Command="{Binding BaseArrayWorkerVM.AddCommand}"  CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,310"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="Button_Click"/>
                 <local:NumBox x:Name="nb_add_value" MaxValue="10000" MinValue="-10000" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Button Command="{Binding BaseArrayWorkerVM.RemoveCommand}" CommandParameter="{Binding ElementName=lb_array, Path=SelectedIndex}" Content="Удалить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <ListBox x:Name="lb_array_even" Margin="215,10,0,10" ItemsSource="{Binding BaseArrayWorkerVM.MVEvenValues}" HorizontalAlignment="Left" Width="117"/>
