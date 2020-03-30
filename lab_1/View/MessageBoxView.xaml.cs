@@ -38,14 +38,16 @@ namespace lab_1.View
         {
             InitializeComponent();
         }
+
         static MessageBoxView _messageBox;
         static MessageBoxResult _result = MessageBoxResult.No;
+
         public static MessageBoxResult Show
         (string caption, string msg, MessageBoxType type)
         {
             switch (type)
             {
-                case MessageBoxType.ConfirmationWithYesNo:
+                case MessageBoxType.ConfirmationWithYesNo:                    
                     return Show(caption, msg, MessageBoxButton.YesNo,
                     MessageBoxImage.Question);
                 case MessageBoxType.ConfirmationWithYesNoCancel:
@@ -64,38 +66,32 @@ namespace lab_1.View
                     return MessageBoxResult.No;
             }
         }
-        public static MessageBoxResult Show(string msg, MessageBoxType type)
+        public static MessageBoxResult Show(string msg, MessageBoxType type) => Show(string.Empty, msg, type);
+
+        public static MessageBoxResult Show(string msg) => Show(string.Empty, msg, MessageBoxButton.OK, MessageBoxImage.None);
+
+        public static MessageBoxResult Show(string caption, string text) => Show(caption, text, MessageBoxButton.OK, MessageBoxImage.None);
+        
+        public static MessageBoxResult Show(string caption, string text, MessageBoxButton button) =>
+            Show(caption, text, button, MessageBoxImage.None);
+        
+        public static MessageBoxResult Show(string caption, string text, MessageBoxButton button, MessageBoxImage image)
         {
-            return Show(string.Empty, msg, type);
-        }
-        public static MessageBoxResult Show(string msg)
-        {
-            return Show(string.Empty, msg,
-            MessageBoxButton.OK, MessageBoxImage.None);
-        }
-        public static MessageBoxResult Show
-        (string caption, string text)
-        {
-            return Show(caption, text,
-            MessageBoxButton.OK, MessageBoxImage.None);
-        }
-        public static MessageBoxResult Show
-        (string caption, string text, MessageBoxButton button)
-        {
-            return Show(caption, text, button,
-            MessageBoxImage.None);
-        }
-        public static MessageBoxResult Show
-        (string caption, string text,
-        MessageBoxButton button, MessageBoxImage image)
-        {
-            _messageBox = new MessageBoxView
-            { txtMsg = { Text = text }, MessageTitle = { Text = caption } };
+            Brush window_brush;
+            if (image == MessageBoxImage.Warning || image == MessageBoxImage.Error)
+                window_brush = Brushes.IndianRed;
+            else
+                window_brush = new SolidColorBrush(Color.FromRgb(0x0F, 0xFF, 0x0F));
+
+            _messageBox = new MessageBoxView()
+            { BorderBrush = window_brush, txtMsg = { Text = text }, MessageTitle = { Text = caption } };
+
             SetVisibilityOfButtons(button);
             SetImageOfMessageBox(image);
             _messageBox.ShowDialog();
             return _result;
         }
+
         private static void SetVisibilityOfButtons(MessageBoxButton button)
         {
             switch (button)

@@ -13,20 +13,29 @@ namespace lab_1.ViewModel
     public class BaseArrayWorkerVM
     {
         readonly BaseArrayWorkerModel _model = new BaseArrayWorkerModel();
+
         public BaseArrayWorkerVM()
         {
-            AddCommand = new DelegateCommand(i => {
+            AddCommand = new DelegateCommand(i => 
+            {
                 _model.AddValue((int?)i);
             });
 
-            RemoveCommand = new DelegateCommand(i => {
+            RemoveCommand = new DelegateCommand(i => 
+            {
                 if (((int?)i).HasValue) _model.RemoveValue(((int?)i).Value);
             });
 
-            RandomGenerateCommand = new DelegateCommand(count => {
+            RandomGenerateCommand = new DelegateCommand(count => 
+            {
                 _model.RandomGenerate((int)count);
             });
+
         }
+
+        public bool FileRead(string path) => _model.TryReadFile(path);
+        public void FileWrite(string path) { _model.WriteFile(path);}
+
         public ICommand AddCommand { get; }
         public ICommand RemoveCommand { get; }
         public ICommand RandomGenerateCommand { get; }

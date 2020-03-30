@@ -10,10 +10,11 @@
         WindowStartupLocation="CenterScreen"  
         ShowInTaskbar="False" ResizeMode="NoResize" 
         WindowStyle="None" Topmost="True"
-        BorderBrush="#1E1E1E"
+        BorderBrush="#007ACC"
         BorderThickness="1"
         Background="#2D2D30">
 
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

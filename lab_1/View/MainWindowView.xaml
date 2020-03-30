@@ -45,7 +45,7 @@
             <EventTrigger.Actions>
                 <BeginStoryboard>
                     <Storyboard TargetProperty="Width" TargetName="аbout_program_border">
-                        <DoubleAnimation From="0" To="650"                                         
+                        <DoubleAnimation From="0" To="400"                                         
                                          AutoReverse="False"                                         
                                          Duration="0:0:0.5"
                                          DecelerationRatio="1"
@@ -55,7 +55,7 @@
                 </BeginStoryboard>
                 <BeginStoryboard>
                     <Storyboard TargetProperty="Height" TargetName="аbout_program_border">
-                        <DoubleAnimation From="{Binding аbout_program_border.Height}"  To="350"
+                        <DoubleAnimation From="{Binding аbout_program_border.Height}"  To="310"
                                          AutoReverse="False"                                         
                                          Duration="0:0:0.5"
                                          DecelerationRatio="1"
@@ -103,34 +103,45 @@
             <Button Style="{StaticResource exit_button}" Margin="0,5, 5,5" Click="ExitClick" Width="25" HorizontalAlignment="Right"/>
             <Button Style="{StaticResource сollapse_button}" Margin="0,5, 30,5" Click="CollapseClick" Width="25" HorizontalAlignment="Right"/>
 
-            <Menu Background="#242427" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <Menu Background="#242427" Width="200" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
                 <MenuItem Header="_Файл" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate2}"  >
                     <MenuItem Header="_Создать" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate3}">
                         <MenuItem Header="_Рандомный массив" InputGestureText="Сtrl+R" Click="MenuItem_Click"/>
                     </MenuItem>
-                    <MenuItem Header="_Открыть" InputGestureText="Сtrl+O"/>
-                    <MenuItem Header="_Сохранить" InputGestureText="Сtrl+S"/>
-                    <MenuItem Header="_Выход"/>
+                    <MenuItem Header="_Открыть" InputGestureText="Сtrl+O" Click="OpenFileClick"/>
+                    <MenuItem Header="_Сохранить" InputGestureText="Сtrl+S" Click="WriteFileClick"/>
+                    <MenuItem Header="_Выход" Click="ExitClick"/>
                 </MenuItem>
+                <MenuItem Header="_Настройки" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate2}" Click="ShowParametersClick"/>
             </Menu>
         </Grid>
 
         <Grid Grid.Row="1">
-            <Grid x:Name="аbout_program" Visibility="Collapsed">
-                <Border x:Name="аbout_program_border" BorderBrush="#007ACC" BorderThickness="2"
+            <Grid x:Name="g_аbout_program" Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>                
+
+                <Grid Grid.Row="0">
+                    <Border x:Name="аbout_program_border" BorderBrush="#007ACC" BorderThickness="2"
                 CornerRadius="15" Background="#1E1E1E"
-                Padding="20" Height="80" Width="0">
-                    <TextBlock  Text="{Binding AboutMessageVM.Message}" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
-                </Border>
+                Padding="10" Height="80" Width="0">
+                        <TextBlock Text="{Binding AboutMessageVM.Message}" FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
+                </Grid>                
+                <Button Grid.Row="1" x:Name="b_goto_program" Content="Далее" HorizontalAlignment="Center" Margin="132,0,131,10" Visibility="Collapsed" Click="GoToProgramClick"/>
             </Grid>
 
-            <Grid Visibility="Visible">
+            <Grid x:Name="g_program" Visibility="Collapsed">
                 <ListBox x:Name="lb_array" Margin="10,108,0,65" HorizontalAlignment="Left" Width="200"/>
                 <Button x:Name="b_Add" CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,310"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <local:NumBox x:Name="nb_add_value" MaxValue="10000" MinValue="-10000" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Button x:Name="b_Remove" CommandParameter="{Binding ElementName=lb_array, Path=SelectedIndex}" Content="Удалить" Margin="10,0,0,10"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                <ListBox x:Name="lb_array_even" Margin="215,10,0,10" HorizontalAlignment="Left" Width="117"/>
-                <ListBox x:Name="lb_array_odd" Margin="337,10,0,10" HorizontalAlignment="Left" Width="117"/>
+                <ListBox x:Name="lb_array_even" Margin="215,53,0,10" HorizontalAlignment="Left" Width="117"/>
+                <Label Content="Четный массив" Height="35" VerticalContentAlignment="Center" Margin="215,10,131,367"/>
+                <ListBox x:Name="lb_array_odd" Margin="337,53,0,10" HorizontalAlignment="Left" Width="117"/>
+                <Label Content="Нечетный массив" Height="35" VerticalContentAlignment="Center" Margin="337,10,10,367"/>
             </Grid>
         </Grid>
     </Grid>

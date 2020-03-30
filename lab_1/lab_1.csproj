@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="INIFileParser, Version=2.5.2.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.2.5.2\lib\net20\INIFileParser.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -58,17 +61,27 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\BaseArrayWorkerModel.cs" />
+    <Compile Include="Model\FileWorkerModel.cs" />
+    <Compile Include="Model\ParamModel.cs" />
     <Compile Include="ViewModel\BaseArrayWorkerVM.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
+    <Compile Include="ViewModel\ParamVM.cs" />
     <Compile Include="View\MessageBoxView.xaml.cs">
       <DependentUpon>MessageBoxView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NumBox.cs" />
+    <Compile Include="View\ParametersWindowView.xaml.cs">
+      <DependentUpon>ParametersWindowView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RandomCreateWindow.xaml.cs">
       <DependentUpon>RandomCreateWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MessageBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ParametersWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,6 +138,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
