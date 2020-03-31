@@ -30,11 +30,11 @@ namespace lab_1.ViewModel
             {
                 _model.RandomGenerate((int)count);
             });
-
         }
 
         public bool FileRead(string path) => _model.TryReadFile(path);
         public void FileWrite(string path) { _model.WriteFile(path);}
+        public void Clear() { _model.Clear(); }
 
         public ICommand AddCommand { get; }
         public ICommand RemoveCommand { get; }

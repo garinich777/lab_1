@@ -40,6 +40,7 @@ namespace lab_1.View
                 {
                     ((Button)sender).Command = _baseArrayWorkerVM.RandomGenerateCommand;
                     ((Button)sender).CommandParameter = nb_array_size.Value.Value;
+                    Close();
                 }
             }
             else

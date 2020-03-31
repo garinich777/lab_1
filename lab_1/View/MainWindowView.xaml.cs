@@ -45,9 +45,9 @@ namespace lab_1.View
                 DragMove();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void OpenRandomGWindowClick(object sender, RoutedEventArgs e)
         {
-            new RandomCreateWindow(_baseArrayWorkerVM).Show();
+            new RandomCreateWindow(_baseArrayWorkerVM).ShowDialog();
         }
 
         private void OpenFileClick(object sender, RoutedEventArgs e)
@@ -104,6 +104,13 @@ namespace lab_1.View
             ParametersWindowView param_window = new ParametersWindowView(show_param);
             param_window.ShowDialog();
             ParamVM.ShowInfo = param_window.ShowInfo;
+        }
+
+        private void ClearArray(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = MessageBoxView.Show("Очистить массив?", "Старый массив будет утерян! Очистить массив?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (messageBoxResult == MessageBoxResult.Yes)
+                _baseArrayWorkerVM.Clear();            
         }
 
         private void MyInitializeComponent()

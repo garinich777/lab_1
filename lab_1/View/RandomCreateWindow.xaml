@@ -8,11 +8,11 @@
         WindowStyle="None"
         Background="#2D2D30"
         ResizeMode="NoResize"
-        Height="320" Width="200"
+        Height="180" Width="200"
         WindowStartupLocation="CenterScreen"
         BorderBrush="#1E1E1E"
         BorderThickness="1"
-        >
+        Topmost="True">
 
     <Window.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource round_buttons}" x:Key="exit_button">

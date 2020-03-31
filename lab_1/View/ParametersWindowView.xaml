@@ -24,22 +24,6 @@
         </Style>
     </Window.Resources>
 
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="local:NumBox.ErrorSymbol">
-            <EventTrigger.Actions>
-                <BeginStoryboard>
-                    <Storyboard   TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" TargetName="nb_array_size">
-                        <ColorAnimation From="#007ACC"  To="Red"
-                            AutoReverse="True"                                         
-                            Duration="0:0:0.4"
-                        />
-                    </Storyboard>
-                </BeginStoryboard>
-            </EventTrigger.Actions>
-        </EventTrigger>
-
-    </Window.Triggers>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>

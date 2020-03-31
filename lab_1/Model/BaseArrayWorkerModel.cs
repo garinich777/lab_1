@@ -40,6 +40,14 @@ namespace lab_1.Model
             }
         }
 
+        private void Sort()
+        {
+            _even_values.Clear();
+            _odd_values.Clear();
+            for (int i = 0; i < _values.Count; i++)
+                Shuffle(i, _values[i]);
+        }
+
         public void RemoveValue(int? index)
         {
             if (index >= 0 && index < _values.Count && index.HasValue)
@@ -51,22 +59,12 @@ namespace lab_1.Model
 
         public void RandomGenerate(int count)
         {
-            _values.Clear();
-            _even_values.Clear();
-            _odd_values.Clear();
+            Clear();
             int max_value = 10000;
             int min_value = -10000;
             var rand = new Random();
             for (int i = 0; i < count; i++)
                 AddValue(rand.Next(min_value, max_value));
-        }
-
-        private void Sort()
-        {
-            _even_values.Clear();
-            _odd_values.Clear();
-            for (int i = 0; i < _values.Count; i++)
-                Shuffle(i, _values[i]);
         }
 
         public bool TryReadFile(string path)
@@ -85,6 +83,13 @@ namespace lab_1.Model
         public void WriteFile(string path)
         {
             FileWorkerModel.WriteFile(Values, path);
+        }
+
+        public void Clear()
+        {
+            _values.Clear();
+            _even_values.Clear();
+            _odd_values.Clear();
         }
     }
 }

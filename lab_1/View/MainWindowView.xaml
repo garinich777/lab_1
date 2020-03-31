@@ -106,18 +106,19 @@
             <Menu Background="#242427" Width="200" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
                 <MenuItem Header="_Файл" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate2}"  >
                     <MenuItem Header="_Создать" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate3}">
-                        <MenuItem Header="_Рандомный массив" InputGestureText="Сtrl+R" Click="MenuItem_Click"/>
+                        <MenuItem Header="_Рандомный массив" InputGestureText="Сtrl+R" Click="OpenRandomGWindowClick"/>
                     </MenuItem>
                     <MenuItem Header="_Открыть" InputGestureText="Сtrl+O" Click="OpenFileClick"/>
                     <MenuItem Header="_Сохранить" InputGestureText="Сtrl+S" Click="WriteFileClick"/>
-                    <MenuItem Header="_Выход" Click="ExitClick"/>
+                    <MenuItem Header="_Очистить" Command="{Binding ClearCommand}" InputGestureText="Сtrl+Q" Click="ClearArray"/>
+                    <MenuItem Header="_Выход" InputGestureText="Alt+F4" Click="ExitClick"/>
                 </MenuItem>
                 <MenuItem Header="_Настройки" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate2}" Click="ShowParametersClick"/>
             </Menu>
         </Grid>
 
         <Grid Grid.Row="1">
-            <Grid x:Name="g_аbout_program" Visibility="Visible">
+            <Grid x:Name="g_аbout_program" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="60"/>
@@ -133,7 +134,7 @@
                 <Button Grid.Row="1" x:Name="b_goto_program" Content="Далее" HorizontalAlignment="Center" Margin="132,0,131,10" Visibility="Collapsed" Click="GoToProgramClick"/>
             </Grid>
 
-            <Grid x:Name="g_program" Visibility="Collapsed">
+            <Grid x:Name="g_program" Visibility="Visible">
                 <ListBox x:Name="lb_array" Margin="10,108,0,65" HorizontalAlignment="Left" Width="200"/>
                 <Button x:Name="b_Add" CommandParameter="{Binding ElementName=nb_add_value, Path=Value}" Content="Добавить" Margin="10,0,0,310"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <local:NumBox x:Name="nb_add_value" MaxValue="10000" MinValue="-10000" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
