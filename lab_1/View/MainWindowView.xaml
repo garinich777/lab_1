@@ -110,7 +110,7 @@
                     </MenuItem>
                     <MenuItem Header="_Открыть" InputGestureText="Сtrl+O" Click="OpenFileClick"/>
                     <MenuItem Header="_Сохранить" InputGestureText="Сtrl+S" Click="WriteFileClick"/>
-                    <MenuItem Header="_Очистить" Command="{Binding ClearCommand}" InputGestureText="Сtrl+Q" Click="ClearArray"/>
+                    <MenuItem Header="_Очистить все" InputGestureText="Сtrl+Q" Click="ClearArray"/>
                     <MenuItem Header="_Выход" InputGestureText="Alt+F4" Click="ExitClick"/>
                 </MenuItem>
                 <MenuItem Header="_Настройки" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate2}" Click="ShowParametersClick"/>
