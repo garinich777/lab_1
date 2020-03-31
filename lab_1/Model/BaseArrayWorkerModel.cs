@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 
 namespace lab_1.Model
 {
-    class BaseArrayWorkerModel
+    public class BaseArrayWorkerModel
     {
         private readonly ObservableCollection<int> _values = new ObservableCollection<int>();
         private readonly ObservableCollection<int> _even_values = new ObservableCollection<int>();
@@ -18,9 +16,9 @@ namespace lab_1.Model
 
         public BaseArrayWorkerModel()
         {
-            Values = new ReadOnlyObservableCollection<int>(_values);
-            Even_Values = new ReadOnlyObservableCollection<int>(_even_values);
-            Odd_Values = new ReadOnlyObservableCollection<int>(_odd_values);
+            Values       = new ReadOnlyObservableCollection<int>(_values);
+            Even_Values  = new ReadOnlyObservableCollection<int>(_even_values);
+            Odd_Values   = new ReadOnlyObservableCollection<int>(_odd_values);
         }
 
         private void Shuffle(int index, int value)
