@@ -33,7 +33,8 @@ namespace lab_1.ViewModel
         }
 
         public bool FileRead(string path) => _model.TryReadFile(path);
-        public void FileWrite(string path) { _model.WriteFile(path);}
+        public void FileWrite(string path) { _model.WriteFile(path); }
+        public void ResultFileWrite(string path) { _model.ResultWriteFile(path); }
         public void Clear() { _model.Clear(); }
 
         public ICommand AddCommand { get; }

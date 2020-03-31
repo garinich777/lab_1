@@ -98,6 +98,28 @@ namespace lab_1.View
             }
         }
 
+        private void WriteResultFileClick(object sender, RoutedEventArgs e)
+        {
+            string file_path = string.Empty;
+            string file_name = string.Empty;
+            using (SaveFileDialog saveFileDialog1 = new SaveFileDialog())
+            {
+                saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 1;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    if (!string.IsNullOrEmpty(file_path = saveFileDialog1.FileName))
+                    {
+                        file_name = Path.GetFileName(file_path);
+                        _baseArrayWorkerVM.ResultFileWrite(file_path);
+                        MessageBoxView.Show(file_name, "Файл " + file_name + " успешно записан", MessageBoxType.Information);
+                    }
+                }
+            }
+        }
+
         private void ShowParametersClick(object sender, RoutedEventArgs e)
         {
             bool show_param = ParamVM.ShowInfo;

@@ -85,6 +85,11 @@ namespace lab_1.Model
             FileWorkerModel.WriteFile(Values, path);
         }
 
+        public void ResultWriteFile(string path)
+        {
+            FileWorkerModel.WriteFile(Even_Values, Odd_Values, path);
+        }
+
         public void Clear()
         {
             _values.Clear();

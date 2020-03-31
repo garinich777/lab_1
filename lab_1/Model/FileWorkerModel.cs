@@ -39,7 +39,20 @@ namespace lab_1.Model
             
             using (StreamWriter writer = new StreamWriter(path))
                 writer.Write(content);
-            
+        }
+
+        public static void WriteFile(ReadOnlyObservableCollection<int> array_even, ReadOnlyObservableCollection<int> array_odd, string path)
+        {
+            string content = "even array:" + Environment.NewLine;
+            foreach (int el in array_even)
+                content += el.ToString() + " ";
+            content += Environment.NewLine;
+            content += "odd array:";
+            content += Environment.NewLine;
+            foreach (int el in array_odd)
+                content += el.ToString() + " ";
+            using (StreamWriter writer = new StreamWriter(path))
+                writer.Write(content);
         }
     }
 }

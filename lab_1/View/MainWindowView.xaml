@@ -108,8 +108,11 @@
                     <MenuItem Header="_Создать" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate3}">
                         <MenuItem Header="_Рандомный массив" InputGestureText="Сtrl+R" Click="OpenRandomGWindowClick"/>
                     </MenuItem>
-                    <MenuItem Header="_Открыть" InputGestureText="Сtrl+O" Click="OpenFileClick"/>
-                    <MenuItem Header="_Сохранить" InputGestureText="Сtrl+S" Click="WriteFileClick"/>
+                    <MenuItem Header="_Сохранить" Style="{StaticResource menuParentStyle}" ItemContainerStyle="{DynamicResource MenuItemStyle1}" Template="{DynamicResource MenuItemControlTemplate3}">
+                        <MenuItem Header="_Исходный массив" InputGestureText="Сtrl+S" Click="WriteFileClick"/>
+                        <MenuItem Header="_Результат" Click="WriteResultFileClick"/>
+                    </MenuItem>
+                    <MenuItem Header="_Открыть" InputGestureText="Сtrl+O" Click="OpenFileClick"/>                    
                     <MenuItem Header="_Очистить все" InputGestureText="Сtrl+Q" Click="ClearArray"/>
                     <MenuItem Header="_Выход" InputGestureText="Alt+F4" Click="ExitClick"/>
                 </MenuItem>
